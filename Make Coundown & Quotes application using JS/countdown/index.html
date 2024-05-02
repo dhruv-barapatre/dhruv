@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown Timer</title>
+</head>
+<body>
+  <h1>Countdown Timer</h1>
+  <div id="countdown"></div>
+  <label for="datetime">Enter target date and time:</label>
+  <input type="datetime-local" id="datetime">
+  <button onclick="startCountdown()">Start Countdown</button>
+
+  <script>
+    function startCountdown() {
+      var targetDate = new Date(document.getElementById('datetime').value).getTime();
+
+      var countdownInterval = setInterval(function() {
+        var currentDate = new Date().getTime();
+        var distance = targetDate - currentDate;
+
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('countdown').innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+        if (distance < 0) {
+          clearInterval(countdownInterval);
+          document.getElementById('countdown').innerHTML = "EXPIRED";
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
