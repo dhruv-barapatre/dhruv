@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: red;
+        }
+
+        .count {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        span {
+            font-size: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            background: linear-gradient(to right, #6A18BF, #A22ED3);
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <h1>Timer</h1>
+
+        <div class="count">
+            <span id="timer">60</span>
+            <button id="start">Start Timer</button>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        let timer = document.getElementById("timer");
+        let count = 60;
+
+        let start = document.getElementById("start");
+        start.addEventListener("click", () => {
+            let inerval = setInterval(() => {
+                timer.innerText = count;
+                count--;
+                if (count == -1) {
+                    clearTimeout(inerval);
+                }
+            }, 1000)
+        })
+    </script>
+</body>
+
+</html>
+<!-- 
+This HTML document creates a simple timer using JavaScript. The structure of the HTML page consists of a <div>
+element with a class of "main" containing an <h1> heading with the text "Timer" and a <div> element with a 
+class of "count". Inside this div, there is a <span> element with an id of "timer" displaying the 
+countdown value, initially set to 60, and a <button> element with an id of "start" labeled "Start Timer".
+
+In the embedded CSS styles, global reset styles are applied to remove default margin and padding, and the 
+box-sizing property is set to border-box for all elements. The heading <h1> is styled to be centered and red. 
+The class ".count" applies flexbox properties, aligning its contents to the center. The <span> inside is 
+styled with a large font size. The <button> is styled with padding, border-radius, a gradient 
+background, and white text.
+
+The JavaScript section handles the timer functionality. It first selects the elements with ids "timer" and 
+"start" using document.getElementById(). It initializes a variable count to 60, representing the initial 
+countdown value. An event listener is attached to the "Start Timer" button, which triggers a function when 
+clicked. Inside this function, setInterval() is used to repeatedly execute a callback function every 1000 
+milliseconds (1 second). Within this callback function, the count value is updated in the <span> element, and 
+it decrements by 1 each time. If the count reaches -1 (after the final second), clearInterval() is called 
+to stop the timer.
+
+Overall, this code creates a simple web page with a countdown timer that starts at 60 seconds when the "Start 
+Timer" button is clicked and counts down to 0. -->
