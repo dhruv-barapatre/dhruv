@@ -20,5 +20,5 @@ dog.speak();
 // class reprsent animal its constuctor takes name
 // and it constracutor takes method speak
 // class dog extends the method animal 
-// and declare let dog named "Buddy"
-// and just called speak() it is mehod of dog
+// and declare let dog named it takes name budddy
+// and just console speak() it is method of dog
