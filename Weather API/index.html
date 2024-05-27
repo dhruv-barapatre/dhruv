@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cards{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .card-img-img{
+            border-radius: 50% ;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cards" id="cardlist"></div>
+
+    <script>
+        let cardlist = document.getElementById("cardlist");
+        fetch("https://reqres.in/api/users?page=2")
+            .then((res) => res.json())
+            .then((json) => {
+                onecardData(json.data);
+            })
+            .catch((err) => console.log(err));
+
+        function onecardData(data) {
+            let store = data.map((user) => cardTemplate(user.id, user.avatar, user.first_name, user.last_name));
+            cardlist.innerHTML = store.join("");
+        }
+
+        function cardTemplate(id, avatar, first_name, last_name) {
+            let onecard = `
+                <div class="card" data-id=${id}>
+                    <div class="card-img">
+                        <img class="card-img-img" src=${avatar} alt="">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-founder">${first_name}</p>
+                        <p class="card-category">${last_name}</p>
+                    </div>
+                </div>
+            `;
+            return onecard;
+        }
+    </script>
+</body>
+
+</html>
