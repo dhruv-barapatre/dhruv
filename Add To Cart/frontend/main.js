@@ -40,7 +40,7 @@ let searchByButton = document.getElementById("search-by-button");
 
 // fetch data from server_________________
 let prodata = []
-fetch("http://localhost:3000/pitches")
+fetch("https://frontendsideadityagotafode.onrender.com/pitches")
     .then((res) => res.json())
     .then((json) => {
         onecardData(json)
@@ -83,7 +83,7 @@ pitchCreateBtn.addEventListener("click", () => {
         founder: pitchfounderInput.value,
         price: pitchPriceInput.value
     }
-    fetch("http://localhost:3000/pitches", { // Correct URL
+    fetch("https://frontendsideadityagotafode.onrender.com/pitches", { // Correct URL
         method: "POST",
         headers: {
             'Content-Type': 'application/json', // Correct capitalization
@@ -95,6 +95,7 @@ pitchCreateBtn.addEventListener("click", () => {
             prodata.push(json); // Update prodata with the new pitch
             onecardData(prodata); // Refresh the card list with updated data
             alert("Added Successfully");
+            window.location.reload();
         })
         .catch((err) => console.log(err));
 })
@@ -111,13 +112,14 @@ document.addEventListener("click", (e) => {
     }
 });
 function delpitches(id) {
-    fetch(`http://localhost:3000/pitches/${id}`, {
+    fetch(`https://frontendsideadityagotafode.onrender.com/pitches/${id}`, {
         method: "DELETE"
     })
         .then(res => { res.json() })
         .then(json => {
             console.log(json)
             alert("Deleted....")
+            window.location.reload();
         })
         .catch((err) => { console.log(err) })
 }
@@ -157,7 +159,7 @@ document.addEventListener("click", (e) => {
     }
 })
 function populateForm(id) {
-    fetch(`http://localhost:3000/pitches/${id}`)
+    fetch(`https://frontendsideadityagotafode.onrender.com/pitches/${id}`)
         .then((res) => res.json())
         .then((data) => {
             updatePitchIdInput.value = data.id;
@@ -167,6 +169,7 @@ function populateForm(id) {
             updatePitchCategoryInput.value = data.category;
             updatePitchPriceInput.value = data.price;
             updatePricePitchId.value = data.id;
+
         })
         .catch((err) => console.log(err))
 }
@@ -179,7 +182,7 @@ updatePitchBtn.addEventListener("click", () => {
         category: updatePitchCategoryInput.value,
         price: updatePitchPriceInput.value
     }
-    fetch(`http://localhost:3000/pitches/${updatedData.id}`, {
+    fetch(`https://frontendsideadityagotafode.onrender.com/pitches/${updatedData.id}`, {
         method: "PUT",
         headers: {
             "Content-type": "application/data"
@@ -188,6 +191,7 @@ updatePitchBtn.addEventListener("click", () => {
     }).then((res) => res.json())
         .then((data) => {
             alert("Updated Successfully....")
+            window.location.reload();
         }).catch((err) => console.log(err))
 })
 updatePricePitchPriceButton.addEventListener("click", () => {
@@ -195,7 +199,7 @@ updatePricePitchPriceButton.addEventListener("click", () => {
         id: updatePricePitchId.value,
         price: updatePricePitchPrice.value
     }
-    fetch(`http://localhost:3000/pitches/${updateprice.id}`, {
+    fetch(`https://frontendsideadityagotafode.onrender.com/pitches/${updateprice.id}`, {
         method: "PATCH",
         headers: {
             "Content-type": "application/data"
@@ -204,6 +208,7 @@ updatePricePitchPriceButton.addEventListener("click", () => {
     }).then((res) => res.json())
         .then((data) => {
             alert("Price Updated Successfully....")
+            window.location.reload();
         }).catch((err) => console.log(err))
 })
 // Search functionality
